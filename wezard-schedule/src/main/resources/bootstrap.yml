@@ -1,0 +1,49 @@
+# Mysql数据库连接配置: com.mysql.cj.jdbc.Driver
+server:
+  port: 8098
+
+spring:
+  application:
+    name: wezard-schedule
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace: ${NACOS_NAMESPACE}
+      config:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace: ${NACOS_NAMESPACE}
+        group: DEFAULT_GROUP
+        file-extension: yaml
+
+  main:
+    allow-bean-definition-overriding: true
+
+# 健康检查
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: always
+
+dubbo:
+  registry:
+    address: spring-cloud://localhost
+  cloud:
+    subscribed-services: wezard-db-adapter
+  consumer:
+    timeout: 200000
+
+# 定时任务配置
+scheduled:
+  week:
+    fixedRate: 600000 # ms, 10 min
+    interval: 10
+    cron: "0 */30 * * * ?"  # 30 min
+  month:
+    fixedRate: 600000 # ms, 10 min
+    interval: 10
+    cron: "0 */30 * * * ?"  # 30 min

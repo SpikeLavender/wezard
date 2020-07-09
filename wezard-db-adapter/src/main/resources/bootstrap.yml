@@ -1,0 +1,60 @@
+server:
+  port: 8093
+
+# Mysql数据库连接配置: com.mysql.cj.jdbc.Driver
+spring:
+  application:
+    name: wezard-db-adapter
+  datasource:
+    url: jdbc:mysql://49.232.146.162:3306/natsume?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: U2FsdGVkX18kY9pA6bwGYP/4xavO576XOCjgKjQbL48=
+    driver-class-name: com.mysql.jdbc.Driver
+  flyway:
+    enabled: false
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace: ${NACOS_NAMESPACE}
+      config:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace: ${NACOS_NAMESPACE}
+        group: DEFAULT_GROUP
+        file-extension: yaml
+  main:
+    allow-bean-definition-overriding: true
+
+# mybatis配置
+mybatis:
+  configuration:
+    #开启驼峰命名匹配映射
+    map-underscore-to-camel-case: true
+    # 控制台日志配置
+    #log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #配置mybatis的xml映射配置文件路径
+  mapper-locations: classpath:mapper/*.xml
+  #配置mybatis映射配置文件中实体类别名
+  type-aliases-package: com.natsumes.wezard.pojo
+
+dubbo:
+  scan:
+    base-packages: com.natsumes.wezard.service.impl
+  protocol:
+    name: dubbo # 协议
+    port: -1  #协议端口， -1 自增端口，从20880开始
+    host: 127.0.0.1
+  registry:
+    address: spring-cloud://localhost #挂载到 spring-cloud 的注册中心
+  cloud:
+    subscribed-services: wezard-db-adapter
+
+# 健康检查
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: when_authorized

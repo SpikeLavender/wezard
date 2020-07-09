@@ -1,0 +1,49 @@
+server:
+  port: 9092
+spring:
+  application:
+    name: wezard-cloud-gateway
+  main:
+    allow-bean-definition-overriding: true
+  cloud:
+    nacos:
+      discovery:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace: ${NACOS_NAMESPACE}
+      config:
+        server-addr: ${NACOS_SERVER_ADDR}
+        namespace: ${NACOS_NAMESPACE}
+        group: DEFAULT_GROUP
+        file-extension: yaml
+
+    gateway:
+      discovery:
+        locator:
+          enabled: true
+      routes:
+        - id: service-customer-router
+          uri: lb://wezard-server
+          predicates:
+            - Path=/customer/**
+        - id: service-logistics-router
+          uri: lb://wezard-server
+          predicates:
+            - Path=/logistics/**
+          filters:
+            - StripPrefix=1
+        - id: service-server-router
+          uri: lb://wezard-server
+          predicates:
+            - Path=/wezard/**
+          filters:
+            - StripPrefix=1
+        - id: service-pay-router
+          uri: lb://wezard-pay
+          predicates:
+            - Path=/pay/**
+        - id: cloud-oauth-router
+          uri: lb://wezard-oauth
+          predicates:
+            - Path=/oauth/**
+
+sign_key: 12345678
