@@ -7,15 +7,15 @@ import java.util.List;
 public interface CommentMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Comment comment);
+    int insert(Comment record);
 
-    int insertSelective(Comment comment);
+    int insertSelective(Comment record);
 
     Comment selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Comment comment);
+    int updateByPrimaryKeySelective(Comment record);
 
-    int updateByPrimaryKey(Comment comment);
+    int updateByPrimaryKey(Comment record);
 
     List<Comment> selectSelective(Comment comment);
 }

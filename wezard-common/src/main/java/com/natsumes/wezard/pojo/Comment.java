@@ -25,6 +25,8 @@ public class Comment implements Serializable {
 
     private Integer role;
 
+    private String avatarUrl;
+
     private Date createTime;
 
     private Date updateTime;

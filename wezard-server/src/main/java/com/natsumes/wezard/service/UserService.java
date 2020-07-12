@@ -2,6 +2,7 @@ package com.natsumes.wezard.service;
 
 
 import com.natsumes.wezard.entity.Response;
+import com.natsumes.wezard.entity.form.UserBankForm;
 import com.natsumes.wezard.entity.form.WeChartForm;
 import com.natsumes.wezard.pojo.Users;
 import org.springframework.stereotype.Service;
@@ -27,5 +28,8 @@ public interface UserService {
      */
     Response<Users> wxLogin(WeChartForm weChartForm);
 
-    Response blind(Integer uid, Integer parentId);
+    Response blindParent(Integer uid, Integer parentId);
+
+    Response blindBank(Integer userId, UserBankForm userBankForm);
+
 }

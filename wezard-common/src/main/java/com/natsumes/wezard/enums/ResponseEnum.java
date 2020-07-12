@@ -58,6 +58,10 @@ public enum ResponseEnum {
 
     ORDER_STATUS_ERROR(505003, "订单状态有误"),
 
+    PROFIT_NUMBER_ERROR(506001, "可领取佣金数目不正确"),
+
+    PROFIT_CANT_RECEIVE(506002, "佣金暂时不可领取"),
+
     SYSTEM_ERROR(100000, "服务端错误"),
 
     ;

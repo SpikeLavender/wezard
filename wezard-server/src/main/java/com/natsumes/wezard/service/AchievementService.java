@@ -2,9 +2,12 @@ package com.natsumes.wezard.service;
 
 import com.github.pagehelper.PageInfo;
 import com.natsumes.wezard.entity.Response;
+import com.natsumes.wezard.entity.form.AchievementForm;
 import com.natsumes.wezard.entity.vo.AchievementVo;
 import com.natsumes.wezard.entity.vo.ProfitVo;
 import org.springframework.stereotype.Service;
+
+import java.math.BigDecimal;
 
 @Service
 public interface AchievementService {
@@ -21,4 +24,7 @@ public interface AchievementService {
 
     Response<PageInfo> detail(Integer uId, Integer pageNum, Integer pageSize);
 
+    Response updateProfit(Integer userId, Integer profitId, BigDecimal number);
+
+    Response updateProfit(Integer userId, BigDecimal number);
 }

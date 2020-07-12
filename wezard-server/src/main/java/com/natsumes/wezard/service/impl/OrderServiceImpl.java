@@ -50,7 +50,7 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public Response<OrderVo> create(Integer uId, OrderCreateForm orderCreateForm) {
-        if (orderCreateForm.getCreateType() == 1) {
+        if (orderCreateForm.getCreateType() != null && orderCreateForm.getCreateType() == 1) {
             return create(uId, orderCreateForm.getProductId(), orderCreateForm.getProductNum(), orderCreateForm.getShippingId());
         }
         return create(uId, orderCreateForm.getShippingId());

@@ -3,6 +3,7 @@ package com.natsumes.wezard.service.impl;
 import com.alibaba.fastjson.JSONObject;
 import com.natsumes.wezard.config.WxConfig;
 import com.natsumes.wezard.entity.Response;
+import com.natsumes.wezard.entity.form.UserBankForm;
 import com.natsumes.wezard.entity.form.WeChartForm;
 import com.natsumes.wezard.enums.ResponseEnum;
 import com.natsumes.wezard.enums.RoleEnum;
@@ -11,6 +12,7 @@ import com.natsumes.wezard.service.DubboUsersService;
 import com.natsumes.wezard.service.UserService;
 import com.natsumes.wezard.utils.JSONUtils;
 import org.apache.dubbo.config.annotation.Reference;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -116,6 +118,7 @@ public class UserServiceImpl implements UserService {
             //用户不存在(返回: 用户名或密码错误) , 自动注册
             users = new Users();
             users.setRole(RoleEnum.CUSTOMER.getCode());
+            users.setOtherName(weChartForm.getUsername());
             //MD5摘要算法(Spring 自带)
             //存储sessionKey
             users.setPassword(openId);
@@ -133,13 +136,14 @@ public class UserServiceImpl implements UserService {
             users.setPassword(openId);
             users.setId(users.getId());
             users.setUsername(openId);
+            users.setOtherName(weChartForm.getUsername());
             dubboUsersService.updateByPrimaryKey(users);
         }
         return Response.success(users);
     }
 
     @Override
-    public Response blind(Integer uid, Integer parentId) {
+    public Response blindParent(Integer uid, Integer parentId) {
         if (parentId == 0) {
             return Response.success();
         }
@@ -172,6 +176,18 @@ public class UserServiceImpl implements UserService {
         }
         //返回成功
         return Response.success();
+    }
+
+    @Override
+    public Response blindBank(Integer userId, UserBankForm userBankForm) {
+        Users users = new Users();
+        BeanUtils.copyProperties(userBankForm, users);
+        users.setId(userId);
+        int i = dubboUsersService.updateByPrimaryKeySelective(users);
+        if (i <= 0) {
+            return Response.error(ResponseEnum.SYSTEM_ERROR);
+        }
+        return Response.success("绑定银行卡成功");
     }
 
     private boolean isSubId(List<Users> users, Integer uId, Integer parentId) {

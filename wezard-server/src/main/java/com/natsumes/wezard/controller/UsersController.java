@@ -1,6 +1,7 @@
 package com.natsumes.wezard.controller;
 
 import com.natsumes.wezard.entity.Response;
+import com.natsumes.wezard.entity.form.UserBankForm;
 import com.natsumes.wezard.entity.form.UserLoginForm;
 import com.natsumes.wezard.entity.form.UserRegisterForm;
 import com.natsumes.wezard.entity.form.WeChartForm;
@@ -59,7 +60,12 @@ public class UsersController {
     }
 
     @PostMapping("/{userId}/{parentId}")
-    public Response blind(@PathVariable Integer userId, @PathVariable Integer parentId) {
-        return userService.blind(userId, parentId);
+    public Response blindParent(@PathVariable Integer userId, @PathVariable Integer parentId) {
+        return userService.blindParent(userId, parentId);
+    }
+
+    @PutMapping("/{userId}/bank")
+    public Response blindBank(@PathVariable Integer userId, @Valid @RequestBody UserBankForm userBankForm) {
+        return userService.blindBank(userId, userBankForm);
     }
 }

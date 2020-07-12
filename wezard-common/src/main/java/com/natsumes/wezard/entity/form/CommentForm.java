@@ -21,6 +21,8 @@ public class CommentForm implements Serializable {
     @NotBlank
     private String content;
 
+    private String avatarUrl;
+
     private Integer giveLike;
 
     private Integer status;

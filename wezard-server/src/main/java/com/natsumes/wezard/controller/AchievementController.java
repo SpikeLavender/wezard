@@ -2,11 +2,14 @@ package com.natsumes.wezard.controller;
 
 import com.github.pagehelper.PageInfo;
 import com.natsumes.wezard.entity.Response;
+import com.natsumes.wezard.entity.form.AchievementForm;
 import com.natsumes.wezard.entity.vo.AchievementVo;
 import com.natsumes.wezard.entity.vo.ProfitVo;
 import com.natsumes.wezard.service.AchievementService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 
 @RestController
@@ -33,4 +36,15 @@ public class AchievementController {
         return achievementService.detail(userId, pageNum, pageSize);
     }
 
+    @GetMapping("/{userId}/receive")
+    public Response updateProfit(@PathVariable Integer userId, @RequestParam BigDecimal number) {
+        return achievementService.updateProfit(userId, number);
+    }
+
+    @GetMapping("/{userId}/receive/{profitId}")
+    public Response updateProfit(@PathVariable Integer userId,
+                                 @PathVariable Integer profitId,
+                                 @RequestParam BigDecimal number) {
+        return achievementService.updateProfit(userId, profitId, number);
+    }
 }

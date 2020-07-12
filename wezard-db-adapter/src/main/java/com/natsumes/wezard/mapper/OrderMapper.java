@@ -9,15 +9,15 @@ import java.util.Set;
 public interface OrderMapper {
     int deleteByPrimaryKey(Integer id);
 
-    int insert(Order order);
+    int insert(Order record);
 
-    int insertSelective(Order order);
+    int insertSelective(Order record);
 
     Order selectByPrimaryKey(Integer id);
 
-    int updateByPrimaryKeySelective(Order order);
+    int updateByPrimaryKeySelective(Order record);
 
-    int updateByPrimaryKey(Order order);
+    int updateByPrimaryKey(Order record);
 
     List<Order> selectByUid(Integer id);
 

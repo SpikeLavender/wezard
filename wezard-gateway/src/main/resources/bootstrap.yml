@@ -47,3 +47,15 @@ spring:
             - Path=/oauth/**
 
 sign_key: 12345678
+
+security:
+  oauth2:
+    client:
+      client-id: webapp
+      client-secret: 123456
+      authorized-grant-types: password
+      access-token-uri: lb://wezard-oauth/oauth/token
+      user-authorization-uri: lb://wezard-oauth/oauth/authorize
+    resource:
+      user-info-uri: lb://wezard-oauth/oauth/user
+

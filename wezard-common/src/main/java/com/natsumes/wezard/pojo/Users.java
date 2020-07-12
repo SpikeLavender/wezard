@@ -13,6 +13,14 @@ public class Users implements Serializable {
 
     private String password;
 
+    private String otherName;
+
+    private String name;
+
+    private String bank;
+
+    private String bankNo;
+
     private String openid;
 
     private String email;
@@ -30,4 +38,5 @@ public class Users implements Serializable {
     private Date createTime;
 
     private Date updateTime;
+
 }

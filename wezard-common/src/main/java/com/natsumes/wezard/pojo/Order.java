@@ -26,6 +26,10 @@ public class Order implements Serializable {
 
     private Date paymentTime;
 
+    private String courierName;
+
+    private String courierNo;
+
     private Date sendTime;
 
     private Date endTime;
