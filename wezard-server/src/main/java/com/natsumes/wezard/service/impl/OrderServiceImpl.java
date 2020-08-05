@@ -11,14 +11,16 @@ import com.natsumes.wezard.enums.OrderStatusEnum;
 import com.natsumes.wezard.enums.PaymentTypeEnum;
 import com.natsumes.wezard.enums.ProductStatusEnum;
 import com.natsumes.wezard.enums.ResponseEnum;
-import com.natsumes.wezard.pojo.Order;
-import com.natsumes.wezard.pojo.OrderItem;
-import com.natsumes.wezard.pojo.Product;
-import com.natsumes.wezard.pojo.Shipping;
+import com.natsumes.wezard.pojo.*;
 import com.natsumes.wezard.service.*;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.cloud.stream.annotation.StreamListener;
+import org.springframework.cloud.stream.messaging.Sink;
+import org.springframework.messaging.Message;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -31,6 +33,8 @@ import static com.natsumes.wezard.enums.ResponseEnum.CART_SELECTED_IS_EMPTY;
 
 
 @Service
+@EnableBinding(Sink.class)
+@Slf4j
 public class OrderServiceImpl implements OrderService {
 
 	@Reference
@@ -341,4 +345,18 @@ public class OrderServiceImpl implements OrderService {
 		orderItem.setTotalPrice(product.getPrice().multiply(BigDecimal.valueOf(quantity)));
 		return orderItem;
 	}
+
+	@StreamListener(Sink.INPUT)
+    public void processPayInfo(Message<PayInfo> message) {
+        log.info("接收到消息 => {}", message);
+//        PayInfo payInfo = JSON.parseObject(msg, PayInfo.class);
+        PayInfo payInfo = message.getPayload();
+
+        log.info("接收到消息 => {}", payInfo);
+        if (payInfo.getPlatformStatus().equals("SUCCESS")) {
+            //修改订单里的状态
+            this.paid(payInfo.getOrderNo());
+        }
+
+    }
 }

@@ -16,4 +16,8 @@ public class StefanieConst {
     public static final String URL_ENCODER_TYPE = "UTF-8";
 
     private static String MESSAGE_TOKEN = "";
+
+    public static final String PAY_INFO_MESSAGE_INPUT = "payInfoMessageInput";
+
+    public static final String PAY_INFO_MESSAGE_OUTPUT = "payInfoMessageOutput";
 }

@@ -1,7 +1,5 @@
-
 server:
   port: 8091
-
 spring:
   flyway:
     enabled: false
@@ -23,6 +21,16 @@ spring:
         namespace: ${NACOS_NAMESPACE}
         group: DEFAULT_GROUP
         file-extension: yaml
+    stream:
+      rocketmq:
+        binder:
+          # 指定NameServer
+          name-server: 123.207.218.247:9876
+      bindings:
+        payInfoMessageOutput:
+          # 用来指定topic
+          destination: stream-order-topic
+          group: order001
 
 mybatis:
   configuration:

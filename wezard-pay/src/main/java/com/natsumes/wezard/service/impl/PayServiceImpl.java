@@ -1,6 +1,5 @@
 package com.natsumes.wezard.service.impl;
 
-import com.alibaba.fastjson.JSON;
 import com.lly835.bestpay.enums.BestPayPlatformEnum;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import com.lly835.bestpay.enums.OrderStatusEnum;
@@ -13,10 +12,10 @@ import com.natsumes.wezard.entity.Response;
 import com.natsumes.wezard.enums.PayPlatformEnum;
 import com.natsumes.wezard.pojo.PayInfo;
 import com.natsumes.wezard.service.DubboPayInfoService;
+import com.natsumes.wezard.service.MessageProducer;
 import com.natsumes.wezard.service.PayService;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
-import org.springframework.amqp.core.AmqpTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,11 +30,11 @@ public class PayServiceImpl implements PayService {
     @Autowired
     private BestPayService bestPayService;
 
+    @Autowired
+    private MessageProducer messageProducer;
+
     @Reference
     private DubboPayInfoService dubboPayInfoService;
-
-    @Autowired
-    private AmqpTemplate amqpTemplate;
 
     @Override
     public Response<PayResponse> create(Integer userId, String orderId, String openId, BigDecimal amount, BestPayTypeEnum payTypeEnum) {
@@ -105,7 +104,7 @@ public class PayServiceImpl implements PayService {
 
         //TODO totoro发送MQ消息，natsume接受MQ消息, payInfoVo
 
-        amqpTemplate.convertAndSend(QUEUE_PAY_NOTIFY, JSON.toJSONString(payInfo));
+        messageProducer.sendPayInfo(payInfo);
 
         if (response.getPayPlatformEnum() == BestPayPlatformEnum.WX) {
             //4.告诉微信不要在通知了
