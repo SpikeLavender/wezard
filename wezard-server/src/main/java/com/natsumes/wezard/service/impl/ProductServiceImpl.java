@@ -1,10 +1,12 @@
 package com.natsumes.wezard.service.impl;
 
+import com.alibaba.csp.sentinel.annotation.SentinelResource;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.natsumes.wezard.enums.ProductStatusEnum;
 import com.natsumes.wezard.entity.form.SearchForm;
 import com.natsumes.wezard.enums.ResponseEnum;
+import com.natsumes.wezard.interceptor.SentinelHandlers;
 import com.natsumes.wezard.pojo.Product;
 import com.natsumes.wezard.service.CategoryService;
 import com.natsumes.wezard.entity.Response;
@@ -17,6 +19,7 @@ import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 
 import java.util.HashSet;
 import java.util.List;
@@ -35,6 +38,13 @@ public class ProductServiceImpl implements ProductService {
     private DubboProductService dubboProductService;
 
     @Override
+    @SentinelResource(value = "QueryAllProduct",
+            blockHandlerClass = SentinelHandlers.class,
+            blockHandler = "handleException",
+            fallbackClass = SentinelHandlers.class,
+            fallback = "handleError",
+            exceptionsToIgnore= {MethodArgumentNotValidException.class}
+    )
     public Response<PageInfo> list(Integer categoryId, Integer pageNum, Integer pageSize) {
         Set<Integer> categoryIdSet = new HashSet<>();
 

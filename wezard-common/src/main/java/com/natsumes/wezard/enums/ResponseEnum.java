@@ -62,6 +62,10 @@ public enum ResponseEnum {
 
     PROFIT_CANT_RECEIVE(506002, "佣金暂时不可领取"),
 
+    SYSTEM_BLOCK_FLOWING(510001, "系统负载过高，熔断中，请稍后重试"),
+
+    SYSTEM_BLOCK_DEGRADING(510002, "当前接口异常，降级中，请稍后重试"),
+
     SYSTEM_ERROR(100000, "服务端错误"),
 
     ;

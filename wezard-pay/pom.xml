@@ -24,28 +24,6 @@
 			<artifactId>spring-cloud-starter-dubbo</artifactId>
 		</dependency>
 
-		<dependency>
-			<groupId>com.natsumes.wezard</groupId>
-			<artifactId>wezard-dubbo-api</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba.csp</groupId>
-			<artifactId>sentinel-apache-dubbo-adapter</artifactId>
-		</dependency>
-
-		<!-- https://mvnrepository.com/artifact/com.alibaba.cloud/spring-cloud-starter-alibaba-nacos-discovery -->
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-discovery</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-alibaba-nacos-config</artifactId>
-		</dependency>
-
 		<!--spring cloud stream 依赖（rabbit）-->
 		<dependency>
 			<groupId>org.springframework.cloud</groupId>

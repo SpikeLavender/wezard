@@ -1,5 +1,7 @@
 package com.natsumes.wezard.exception;
 
+//import com.alibaba.csp.sentinel.slots.block.degrade.DegradeException;
+//import com.alibaba.csp.sentinel.slots.block.flow.FlowException;
 import com.natsumes.wezard.entity.Response;
 import com.natsumes.wezard.enums.ResponseEnum;
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +20,9 @@ public class RuntimeExceptionHandler {
 
     @ExceptionHandler(RuntimeException.class)
     @ResponseBody
-    //@ResponseStatus(HttpStatus.FORBIDDEN)
     public Response handle(RuntimeException e) {
-        return Response.error(ResponseEnum.SYSTEM_ERROR, e.getMessage());
+        log.error("异常原因, {} ", e.getMessage());
+        return Response.error(ResponseEnum.SYSTEM_ERROR);
     }
 
     @ExceptionHandler(UserLoginException.class)
