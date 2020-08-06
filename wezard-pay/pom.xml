@@ -18,10 +18,10 @@
 			<version>${project.version}</version>
 		</dependency>
 
-		<!--spring cloud+dubbo 依赖-->
 		<dependency>
-			<groupId>com.alibaba.cloud</groupId>
-			<artifactId>spring-cloud-starter-dubbo</artifactId>
+			<groupId>com.natsumes.wezard</groupId>
+			<artifactId>wezard-dubbo-api</artifactId>
+			<version>${project.version}</version>
 		</dependency>
 
 		<!--spring cloud stream 依赖（rabbit）-->
@@ -30,6 +30,7 @@
 			<artifactId>spring-cloud-starter-stream-rocketmq</artifactId>
 			<version>0.9.0.RELEASE</version>
 		</dependency>
+
 
 	</dependencies>
 
