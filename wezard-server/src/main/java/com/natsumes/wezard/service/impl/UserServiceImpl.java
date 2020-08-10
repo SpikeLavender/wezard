@@ -127,10 +127,11 @@ public class UserServiceImpl implements UserService {
             users.setOpenid(sessionKey);
 
             //写入数据库
-            int resultCount = dubboUsersService.insertSelective(users);
-            if (resultCount == 0) {
+            int id = dubboUsersService.insertSelective(users);
+            if (id == -1) {
                 return Response.error(ResponseEnum.SYSTEM_ERROR, "写入数据库异常, 注册失败");
             }
+            users.setId(id);
         } else {
             //更新sessionKey
             users.setPassword(openId);

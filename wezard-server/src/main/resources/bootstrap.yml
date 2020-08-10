@@ -10,11 +10,11 @@ spring:
   redis:
     host: 123.207.218.247
     port: 6379
-    password: password
+    password: 2B7998A87E8D1B6E6838580D51ADED13
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: ${NACOS_SERVER_ADDR}
         namespace: 7b456865-351d-404d-abef-fe7fc52a5e6b
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}

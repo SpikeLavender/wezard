@@ -26,8 +26,12 @@ public class DubboShippingServiceImpl implements DubboShippingService {
     }
 
     @Override
-    public int insertSelective(Shipping shipping) {
-        return shippingMapper.insertSelective(shipping);
+    public Integer insertSelective(Shipping shipping) {
+        int i = shippingMapper.insertSelective(shipping);
+        if (i <= 0) {
+            return -1;
+        }
+        return shipping.getId();
     }
 
     @Override

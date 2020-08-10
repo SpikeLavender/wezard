@@ -26,7 +26,11 @@ public class DubboUsersServiceImpl implements DubboUsersService {
 
     @Override
     public int insertSelective(Users users) {
-        return usersMapper.insertSelective(users);
+        int i = usersMapper.insertSelective(users);
+        if (i <= 0) {
+            return -1;
+        }
+        return users.getId();
     }
 
     @Override

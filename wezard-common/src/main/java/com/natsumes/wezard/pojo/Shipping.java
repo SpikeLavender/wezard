@@ -15,6 +15,8 @@ public class Shipping implements Serializable {
 
     private Boolean isDefault;
 
+    private Integer status;
+
     private String receiverName;
 
     private String receiverPhone;

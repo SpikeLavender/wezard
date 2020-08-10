@@ -148,6 +148,17 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
+    public Response<CartVo> listNo() {
+        CartVo cartVo = new CartVo();
+        cartVo.setCartProductVoList(new ArrayList<>());
+        cartVo.setSelectedAll(false);
+        cartVo.setCartTotalPrice(BigDecimal.ZERO);
+        cartVo.setCartTotalQuantity(0);
+        cartVo.setCartSelectedQuantity(0);
+        return Response.success(cartVo);
+    }
+
+    @Override
     public Response<Boolean> exist(Integer uId, Integer productId) {
 
         HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();

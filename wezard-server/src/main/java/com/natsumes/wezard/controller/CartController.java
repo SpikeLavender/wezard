@@ -17,6 +17,11 @@ public class CartController {
     @Autowired
     private CartService cartService;
 
+    @GetMapping("/")
+    public Response<CartVo> listNo() {
+        return cartService.listNo();
+    }
+
     @GetMapping("/{userId}")
     public Response<CartVo> list(@PathVariable Integer userId) {
         return cartService.list(userId);

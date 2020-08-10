@@ -16,6 +16,8 @@ public interface CartService {
 
     Response<CartVo> list(Integer uId);
 
+    Response<CartVo> listNo();
+
     Response<Boolean> exist(Integer uId, Integer productId);
 
     Response<CartVo> update(Integer uId, Integer productId, CartUpdateForm form);

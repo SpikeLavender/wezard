@@ -8,7 +8,7 @@ spring:
   cloud:
     nacos:
       discovery:
-        server-addr: 127.0.0.1:8848
+        server-addr: ${NACOS_SERVER_ADDR}
         namespace: 7b456865-351d-404d-abef-fe7fc52a5e6b
       config:
         server-addr: ${spring.cloud.nacos.discovery.server-addr}
@@ -70,16 +70,5 @@ spring:
           predicates:
             - Path=/oauth/**
 
-sign_key: 12345678
 
-security:
-  oauth2:
-    client:
-      client-id: webapp
-      client-secret: 123456
-      authorized-grant-types: password
-      access-token-uri: lb://wezard-oauth/oauth/token
-      user-authorization-uri: lb://wezard-oauth/oauth/authorize
-    resource:
-      user-info-uri: lb://wezard-oauth/oauth/user
 

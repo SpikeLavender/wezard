@@ -12,7 +12,7 @@ public interface DubboShippingService {
 
     int insert(Shipping shipping);
 
-    int insertSelective(Shipping shipping);
+    Integer insertSelective(Shipping shipping);
 
     Shipping selectByPrimaryKey(Integer id);
 

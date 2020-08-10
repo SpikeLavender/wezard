@@ -8,33 +8,42 @@ import com.natsumes.wezard.enums.ResponseEnum;
 import com.natsumes.wezard.pojo.Shipping;
 import com.natsumes.wezard.service.DubboShippingService;
 import com.natsumes.wezard.service.ShippingService;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.dubbo.config.annotation.Reference;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 import java.util.stream.Collectors;
 
 
 @Service
+@Slf4j
 public class ShippingServiceImpl implements ShippingService {
 
     @Reference
     private DubboShippingService dubboShippingService;
 
     @Override
+    @Transactional
     public Response<Map<String, Integer>> add(Integer uId, ShippingForm form) {
 
         Shipping shipping = new Shipping();
         BeanUtils.copyProperties(form, shipping);
         shipping.setUserId(uId);
         shipping.setIsDefault(Boolean.TRUE);
+        shipping.setStatus(0);
 
-        int row = dubboShippingService.insertSelective(shipping);
+        int id = dubboShippingService.insertSelective(shipping);
 
-        if (row <= 0) {
+        if (id <= 0) {
             return Response.error(ResponseEnum.SYSTEM_ERROR);
         }
+
+        log.info("shipping is: {}", shipping.getId());
+
+        shipping.setId(id);
 
         List<Shipping> shippings = dubboShippingService.selectByUid(uId).stream()
                 .filter(e -> e.getIsDefault() && !e.getId().equals(shipping.getId()))
