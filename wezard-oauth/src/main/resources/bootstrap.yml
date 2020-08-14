@@ -4,11 +4,6 @@ server:
 spring:
   application:
     name: wezard-oauth
-  datasource:
-    url: jdbc:mysql://49.232.146.162:3306/oauth2?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
-    username: root
-    password: U2FsdGVkX18kY9pA6bwGYP/4xavO576XOCjgKjQbL48=
-    driver-class-name: com.mysql.jdbc.Driver
   main:
     allow-bean-definition-overriding: true
   cloud:
@@ -57,11 +52,6 @@ management:
 
 
 sign_key: 12345678
-
-wx:
-  appId: wx4979619f65fe08f5
-  mchKey: 99a984c7045f09c7ac0d49a92598b5eb
-  openIdUrl: https://api.weixin.qq.com/sns/jscode2session
 
 dubbo:
   registry:

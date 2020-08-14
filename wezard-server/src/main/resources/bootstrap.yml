@@ -7,10 +7,6 @@ spring:
     name: wezard-server
   flyway:
     enabled: false
-  redis:
-    host: 123.207.218.247
-    port: 6379
-    password: 2B7998A87E8D1B6E6838580D51ADED13
   cloud:
     nacos:
       discovery:
@@ -44,28 +40,9 @@ spring:
             groupId: DEFAULT_GROUP
             data-type: json
             rule-type: degrade
-
-    stream:
-      rocketmq:
-        binder:
-          # 指定NameServer
-          name-server: 123.207.218.247:9876
-      bindings:
-        input:
-          # 用来指定topic
-          destination: stream-order-topic
-          group: order001
   main:
     allow-bean-definition-overriding: true
 
-
-wx:
-  customer:
-    token: AAD94657D502EB590CE29A43A5B22340
-    AESKey: vEZ6oxmjH4zHhLpLGEdIxg7easks4mEPsDuAoxwzizu
-  appId: wx4979619f65fe08f5
-  mchKey: 99a984c7045f09c7ac0d49a92598b5eb
-  openIdUrl: https://api.weixin.qq.com/sns/jscode2session
 # pagehelper 配置
 pagehelper:
   auto-dialect: true
@@ -74,7 +51,6 @@ pagehelper:
   params: countSql
   rowBoundsWithCount: true
 
-sign_key: 12345678
 
 dubbo:
   registry:
