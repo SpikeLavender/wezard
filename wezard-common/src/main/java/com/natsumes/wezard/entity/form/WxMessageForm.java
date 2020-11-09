@@ -6,10 +6,9 @@ import lombok.ToString;
 
 import java.io.Serializable;
 
-
 /**
- * {CreateTime=1548042266, Event=user_enter_tempsession, ToUserName=gh_e6198220cbff,
- *  FromUserName=oZvme4q2Oi7Dz3FChXc43kqw28, MsgType=event, SessionFrom=wxapp}
+ * @author  hetengjiao
+ * @date    2020-10-30
  */
 @Data
 @ToString

@@ -1,10 +1,20 @@
 package com.natsumes.wezard.entity;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import java.io.Serializable;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class Cart implements Serializable {
 
     private static final long serialVersionUID = 109421235264497974L;
@@ -19,14 +29,4 @@ public class Cart implements Serializable {
      * 商品是否选中
      */
     private Boolean productSelected;
-
-
-    public Cart() {
-    }
-
-    public Cart(Integer productId, Integer quantity, Boolean productSelected) {
-        this.productId = productId;
-        this.quantity = quantity;
-        this.productSelected = productSelected;
-    }
 }

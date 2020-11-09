@@ -5,6 +5,10 @@ import lombok.Data;
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
 public class OrderItemVo {
 

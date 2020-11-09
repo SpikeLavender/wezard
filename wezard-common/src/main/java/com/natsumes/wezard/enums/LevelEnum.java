@@ -4,9 +4,15 @@ import lombok.Getter;
 
 import java.math.BigDecimal;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Getter
 public enum LevelEnum {
-
+    /**
+     * deng ji
+     */
     LEVEL_0(0, 0.00, 5000.00, 0.05),
 
     LEVEL_1(1, 5000.00, 10000.00, 0.055),

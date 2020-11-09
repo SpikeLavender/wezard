@@ -10,6 +10,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Service
 public class DubboProductServiceImpl implements DubboProductService {
 

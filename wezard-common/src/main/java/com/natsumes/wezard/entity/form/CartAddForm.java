@@ -5,6 +5,10 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
 public class CartAddForm implements Serializable {
 

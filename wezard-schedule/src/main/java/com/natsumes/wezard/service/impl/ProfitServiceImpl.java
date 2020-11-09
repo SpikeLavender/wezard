@@ -240,7 +240,7 @@ public class ProfitServiceImpl implements ProfitService {
 
         for (IDs idVo : idVos) {
             if (idVo.getParentId().equals(parentId)) {
-                calcAchievementByUser(idVo.getSubIDVos(), achievementMap, idVo.getId());
+                calcAchievementByUser(idVo.getSubIdVos(), achievementMap, idVo.getId());
             }
 
             Achievement achievement = achievementMap.get(idVo.getId());
@@ -248,7 +248,7 @@ public class ProfitServiceImpl implements ProfitService {
                 achievement = new Achievement();
             }
 
-            List<IDs> subIDVos = idVo.getSubIDVos();
+            List<IDs> subIDVos = idVo.getSubIdVos();
             BigDecimal achievementValue = BigDecimal.ZERO;
             BigDecimal subProfit = BigDecimal.ZERO;
             for (IDs subIDVo : subIDVos) {
@@ -316,7 +316,7 @@ public class ProfitServiceImpl implements ProfitService {
                     BeanUtils.copyProperties(user, idVo);
                     subResIDs.add(idVo);
                 }
-                resIdVo.setSubIDVos(subResIDs);
+                resIdVo.setSubIdVos(subResIDs);
                 findSubId(subResIDs, users);
             }
         }

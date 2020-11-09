@@ -3,12 +3,18 @@ package com.natsumes.wezard.entity;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import com.natsumes.wezard.enums.ResponseEnum;
 import lombok.Data;
+import lombok.ToString;
 import org.springframework.validation.BindingResult;
 
 import java.io.Serializable;
 import java.util.Objects;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
+@ToString
 @JsonInclude(value = JsonInclude.Include.NON_NULL)
 public class Response<T> implements Serializable {
 

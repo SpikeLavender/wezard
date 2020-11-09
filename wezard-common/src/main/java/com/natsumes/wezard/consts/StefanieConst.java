@@ -1,5 +1,9 @@
 package com.natsumes.wezard.consts;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 public class StefanieConst {
     public static final String CURRENT_USER = "currentUser";
 

@@ -4,6 +4,10 @@ import com.natsumes.wezard.pojo.Users;
 
 import java.util.List;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 public interface UsersMapper {
     int deleteByPrimaryKey(Integer id);
 

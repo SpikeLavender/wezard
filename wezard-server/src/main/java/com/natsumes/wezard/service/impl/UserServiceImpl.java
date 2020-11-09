@@ -24,7 +24,10 @@ import org.springframework.web.client.RestTemplate;
 import java.nio.charset.StandardCharsets;
 import java.util.List;
 
-
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Service
 public class UserServiceImpl implements UserService {
 
@@ -45,13 +48,7 @@ public class UserServiceImpl implements UserService {
             return Response.error(ResponseEnum.USERNAME_EXIST);
         }
 
-        //email 不能重复
-//		int countByEmail = userMapper.countByEmail(users.getEmail());
-//		if (countByEmail > 0) {
-//			return ResponseVo.error(EMAIL_EXIST);
-//		}
-
-        //检验推广父id是否有效
+        // 检验推广父id是否有效
         if (users.getParentId() == null) {
             users.setParentId(0);
         }
@@ -73,8 +70,14 @@ public class UserServiceImpl implements UserService {
         return Response.success();
     }
 
-    //cookie 跨域
-    //todo: session保存在内存里, 改进版本: token+redis
+    /**
+     * cookie 跨域
+     * todo: session保存在内存里, 改进版本: token+redis
+     *
+     * @param username
+     * @param password
+     * @return
+     */
     @Override
     public Response<Users> login(String username, String password) {
         Users users = dubboUsersService.selectByUsername(username);
@@ -113,7 +116,8 @@ public class UserServiceImpl implements UserService {
         String openId = responseBody.getString("openid");
         String sessionKey = responseBody.getString("session_key");
 
-        Users users = dubboUsersService.selectByUsername(openId); //openId为用户的username
+        //openId为用户的username
+        Users users = dubboUsersService.selectByUsername(openId);
         if (users == null) {
             //用户不存在(返回: 用户名或密码错误) , 自动注册
             users = new Users();

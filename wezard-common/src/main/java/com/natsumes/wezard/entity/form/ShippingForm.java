@@ -6,6 +6,10 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
 public class ShippingForm implements Serializable {
 

@@ -1,11 +1,14 @@
 package com.natsumes.wezard.pojo;
 
 import lombok.Data;
+import lombok.ToString;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+
 @Data
+@ToString
 public class Achievement implements Serializable {
     private static final long serialVersionUID = -1475364597991381589L;
     private Integer id;

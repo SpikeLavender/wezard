@@ -26,7 +26,10 @@ import java.util.List;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Slf4j
 @Service
 public class ProductServiceImpl implements ProductService {

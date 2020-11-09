@@ -6,7 +6,10 @@ import com.natsumes.wezard.service.DubboPayInfoService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 
-
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Service
 public class DubboPayInfoServiceImpl implements DubboPayInfoService {
 

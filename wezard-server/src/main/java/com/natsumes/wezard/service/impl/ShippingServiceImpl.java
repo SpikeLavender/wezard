@@ -17,7 +17,10 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.stream.Collectors;
 
-
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Service
 @Slf4j
 public class ShippingServiceImpl implements ShippingService {
@@ -59,7 +62,6 @@ public class ShippingServiceImpl implements ShippingService {
     }
 
 
-    //todo:软删除
     @Override
     public Response delete(Integer uId, Integer shippingId) {
         int row = dubboShippingService.deleteByIdAndUid(uId, shippingId);

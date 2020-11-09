@@ -7,6 +7,10 @@ import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
 public class OrderVo {
 

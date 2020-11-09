@@ -1,0 +1,64 @@
+version: '2.0'  #版本2.0
+services:       #定义服务
+  wezard-server:
+    image: wezard/wezard-server:1.0-SNAPSHOT
+    restart: always
+    container_name: wezard-server
+    environment:
+      - NACOS_SERVER_ADDR=123.207.218.247:8848
+    ports:
+      - 30277:8080
+    depends_on:
+      - wezard-db-adapter
+      - wezard-redis
+    #volumes:
+    #  - /data/log:/var/log
+
+  wezard-pay:
+    image: wezard/wezard-pay:1.0-SNAPSHOT
+    restart: always
+    container_name: wezard-pay
+    environment:
+      - NACOS_SERVER_ADDR=123.207.218.247:8848
+    ports:
+      - 30278:8080
+    depends_on:
+      - wezard-db-adapter
+
+  wezard-db-adapter:
+    image: wezard/wezard-db-adapter:1.0-SNAPSHOT
+    restart: always
+    container_name: wezard-db-adapter
+    environment:
+      - NACOS_SERVER_ADDR=123.207.218.247:8848
+    ports:
+      - 30279:8080
+
+  wezard-gateway:
+    image: wezard/wezard-gateway:1.0-SNAPSHOT
+    restart: always
+    container_name: wezard-gateway
+    environment:
+      - NACOS_SERVER_ADDR=123.207.218.247:8848
+    ports:
+      - 9092:8080
+
+  wezard-redis:
+    image: natsumes.com:30443/wezard/wezard-redis:5.0
+    restart: always
+    container_name: wezard-redis
+    ports:
+      - 6379:6379
+    command: redis-server /etc/redis/redis.conf
+    volumes:
+      - /docker/redis/data:/data
+      - /docker/redis/redis.conf:/etc/redis/redis.conf
+
+
+
+  # mysql:
+  #   restart: always
+  #   image: hub.c.163.com/library/mysql
+  #   container_name: mysql5.7
+  #   ports:
+  #     - 8989:3306

@@ -3,10 +3,14 @@ package com.natsumes.wezard.enums;
 import lombok.Getter;
 
 /**
- * 订单状态:0-已取消-10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭
+ * @author  hetengjiao
+ * @date    2020-10-30
  */
 @Getter
 public enum OrderStatusEnum {
+    /**
+     * 订单状态:0-已取消-10-未付款，20-已付款，40-已发货，50-交易成功，60-交易关闭
+     */
     CANCELED(0, "已取消"),
 
     NO_PAY(10, "未付款"),

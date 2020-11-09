@@ -21,6 +21,10 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Slf4j
 @Service
 public class AchievementServiceImpl implements AchievementService {
@@ -165,8 +169,10 @@ public class AchievementServiceImpl implements AchievementService {
          * 0 - 不可领取，5 - 可领取， 10 - 领取中， 15 - 已领取
          */
         if (ProfitStatusEnum.UNPAID.getCode().equals(achievement.getStatus())
-                && DateUtils.isBeforeMonth(achievement.getStartTime(), -1) // 本月之前
-                && DateUtils.isAfterDay(7)) {   // 当月7号之后
+                // 本月之前 // 本月之前
+                && DateUtils.isBeforeMonth(achievement.getStartTime(), -1)
+                // 当月7号之后
+                && DateUtils.isAfterDay(7)) {
             profitDetailVo.setStatus(ProfitStatusEnum.VALID_PAID.getCode());
         }
 

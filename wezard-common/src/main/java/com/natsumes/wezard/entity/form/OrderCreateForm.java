@@ -5,6 +5,10 @@ import lombok.Data;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
 public class OrderCreateForm implements Serializable {
 
@@ -16,6 +20,9 @@ public class OrderCreateForm implements Serializable {
 
     private Integer productId;
 
-    private Integer createType;  // 1 - by product method
+    /**
+     * 1 - by product method
+     */
+    private Integer createType;
 
 }

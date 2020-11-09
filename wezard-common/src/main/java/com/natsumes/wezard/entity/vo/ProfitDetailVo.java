@@ -1,14 +1,20 @@
 package com.natsumes.wezard.entity.vo;
 
+import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 
 import java.math.BigDecimal;
 import java.util.Date;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
 public class ProfitDetailVo {
 
-    private Integer id; //业绩表Id
+    @ApiModelProperty(value = "业绩表Id")
+    private Integer id;
 
     private Integer userId;
 
@@ -18,11 +24,14 @@ public class ProfitDetailVo {
 
     private BigDecimal achievement = BigDecimal.ZERO;
 
-    private Date startTime; //开始日期-结束日期
+    @ApiModelProperty(value = "开始日期-结束日期")
+    private Date startTime;
 
-    private Date endTime; //结束日期
+    @ApiModelProperty(value = "结束日期")
+    private Date endTime;
 
-    private Date payTime; //结清时间
+    @ApiModelProperty(value = "结清时间")
+    private Date payTime;
 
     private Integer status;
 }

@@ -5,6 +5,13 @@ server:
 spring:
   application:
     name: wezard-db-adapter
+  datasource:
+    url: jdbc:mysql://49.232.146.162:3306/natsume?characterEncoding=utf-8&serverTimezone=UTC&useSSL=false
+    username: root
+    password: U2FsdGVkX18kY9pA6bwGYP/4xavO576XOCjgKjQbL48=
+    driver-class-name: com.mysql.jdbc.Driver
+  flyway:
+    enabled: false
   cloud:
     nacos:
       discovery:

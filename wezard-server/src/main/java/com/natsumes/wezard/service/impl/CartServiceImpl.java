@@ -28,7 +28,10 @@ import java.util.stream.Collectors;
 
 import static com.natsumes.wezard.consts.StefanieConst.CART_REDIS_KEY_TEMPLATE;
 
-
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Service
 public class CartServiceImpl implements CartService {
 
@@ -248,6 +251,7 @@ public class CartServiceImpl implements CartService {
         return Response.success(sum);
     }
 
+    @Override
     public List<Cart> listForCart(Integer uId) {
         HashOperations<String, String, String> opsForHash = redisTemplate.opsForHash();
         String redisKey = String.format(CART_REDIS_KEY_TEMPLATE, uId);

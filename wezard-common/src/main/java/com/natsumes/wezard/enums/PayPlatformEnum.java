@@ -3,9 +3,17 @@ package com.natsumes.wezard.enums;
 import com.lly835.bestpay.enums.BestPayTypeEnum;
 import lombok.Getter;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Getter
 public enum PayPlatformEnum {
+    /**
+     * 支付宝
+     */
     ALIPAY(1),
+
     WX(2),
     ;
 

@@ -1,10 +1,18 @@
 package com.natsumes.wezard.entity.vo;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 import java.math.BigDecimal;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class CartProductVo {
 
     private Integer productId;
@@ -36,16 +44,4 @@ public class CartProductVo {
      */
     private Boolean productSelected;
 
-    public CartProductVo(Integer productId, Integer quantity, String productName, String productSubtitle, String productMainImage, BigDecimal productPrice, Integer productStatus, BigDecimal productTotalPrice, Integer productStock, Boolean productSelected) {
-        this.productId = productId;
-        this.quantity = quantity;
-        this.productName = productName;
-        this.productSubtitle = productSubtitle;
-        this.productMainImage = productMainImage;
-        this.productPrice = productPrice;
-        this.productStatus = productStatus;
-        this.productTotalPrice = productTotalPrice;
-        this.productStock = productStock;
-        this.productSelected = productSelected;
-    }
 }

@@ -6,6 +6,10 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 import java.util.Set;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 public interface OrderItemMapper {
 
     int deleteByPrimaryKey(Integer id);

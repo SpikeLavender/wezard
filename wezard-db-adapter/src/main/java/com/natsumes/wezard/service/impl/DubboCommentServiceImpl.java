@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Service
 public class DubboCommentServiceImpl implements DubboCommentService {
 

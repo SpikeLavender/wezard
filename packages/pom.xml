@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<parent>
+		<artifactId>wezard-parent</artifactId>
+		<groupId>com.natsumes.wezard</groupId>
+		<version>1.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+
+	<artifactId>packages</artifactId>
+	<packaging>pom</packaging>
+	<name>Wezard Packages</name>
+
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>com.natsumes.wezard</groupId>
+				<artifactId>wezard-server</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.natsumes.wezard</groupId>
+				<artifactId>wezard-pay</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.natsumes.wezard</groupId>
+				<artifactId>wezard-db-adapter</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+			<dependency>
+				<groupId>com.natsumes.wezard</groupId>
+				<artifactId>wezard-gateway</artifactId>
+				<version>${project.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<profiles>
+		<profile>
+			<id>default</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+		</profile>
+
+		<profile>
+			<id>docker</id>
+			<modules>
+				<module>docker</module>
+			</modules>
+			<properties>
+				<docker.skip.push>false</docker.skip.push>
+			</properties>
+		</profile>
+	</profiles>
+
+</project>

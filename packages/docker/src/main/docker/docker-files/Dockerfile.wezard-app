@@ -1,0 +1,23 @@
+#1.指定基础镜像，并且必须是第一条指令
+FROM www.natsumes.com:30443/wezard/openjdk:11.0.9-jdk
+
+#2.指明该镜像的作者和其电子邮件
+MAINTAINER hetengjiao "hetengjiao_xjtu@163.com"
+
+ARG JAR_FILE=maven/app.jar
+
+#3.添加一个存储空间
+VOLUME /tmp
+
+#4.暴露8080端口
+EXPOSE 8080
+
+#5. run
+RUN ["/bin/bash", "-c", "mkdir -p /app/"]
+
+#6.往容器中添加jar包
+ADD ${JAR_FILE} /app
+
+#7.容器启动时需要执行的命令
+WORKDIR /app
+ENTRYPOINT ["java","-Djava.security.egd=file:/dev/urandom -Dspring.profiles.active=prod -Dserver.port=8080 -Dlogging.path=/root/logs/","-jar","/app/app.jar"]

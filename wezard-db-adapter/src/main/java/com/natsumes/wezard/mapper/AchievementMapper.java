@@ -4,7 +4,17 @@ import com.natsumes.wezard.pojo.Achievement;
 
 import java.util.List;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 public interface AchievementMapper {
+
+    /**
+     * deleteByPrimaryKey
+     * @param id    id
+     * @return  int
+     */
     int deleteByPrimaryKey(Integer id);
 
     int insert(Achievement achievement);

@@ -52,6 +52,8 @@ public class OrderServiceImpl implements OrderService {
 	@Reference
 	private DubboOrderItemService dubboOrderItemService;
 
+	private final static String PAY_SUCCESS = "SUCCESS";
+
     @Override
     public Response<OrderVo> create(Integer uId, OrderCreateForm orderCreateForm) {
         if (orderCreateForm.getCreateType() != null && orderCreateForm.getCreateType() == 1) {
@@ -279,7 +281,8 @@ public class OrderServiceImpl implements OrderService {
 		}
 
 		order.setStatus(OrderStatusEnum.PAID.getCode());
-		order.setPaymentTime(new Date()); //todo payInfo 增加支付时间字段
+        //todo payInfo 增加支付时间字段
+		order.setPaymentTime(new Date());
 		int row = dubboOrderService.updateByPrimaryKeySelective(order);
 		if (row <= 0) {
 			throw new RuntimeException("将订单更新为已支付状态失败, 订单id: " + orderNo);
@@ -353,7 +356,7 @@ public class OrderServiceImpl implements OrderService {
         PayInfo payInfo = message.getPayload();
 
         log.info("接收到消息 => {}", payInfo);
-        if (payInfo.getPlatformStatus().equals("SUCCESS")) {
+        if (PAY_SUCCESS.equals(payInfo.getPlatformStatus())) {
             //修改订单里的状态
             this.paid(payInfo.getOrderNo());
         }

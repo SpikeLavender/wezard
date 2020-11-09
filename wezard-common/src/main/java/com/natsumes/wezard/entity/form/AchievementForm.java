@@ -7,6 +7,10 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Data
 public class AchievementForm implements Serializable {
     private static final long serialVersionUID = -4459682999218161832L;

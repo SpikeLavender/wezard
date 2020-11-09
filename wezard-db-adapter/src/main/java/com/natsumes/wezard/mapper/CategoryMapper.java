@@ -4,6 +4,11 @@ import com.natsumes.wezard.pojo.Category;
 import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
+
+/**
+ * @author  hetengjiao
+ * @date    2020-10-30
+ */
 @Mapper
 public interface CategoryMapper {
     int deleteByPrimaryKey(Integer id);
