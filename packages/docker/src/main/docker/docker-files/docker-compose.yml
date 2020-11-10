@@ -4,6 +4,7 @@ services:       #定义服务
     image: wezard/wezard-server:1.0-SNAPSHOT
     restart: always
     container_name: wezard-server
+    #build: Dockerfile.wezard-app
     environment:
       - NACOS_SERVER_ADDR=123.207.218.247:8848
     ports:
